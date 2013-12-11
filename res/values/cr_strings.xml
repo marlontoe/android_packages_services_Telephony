@@ -197,9 +197,6 @@
     <string name="msg_sim_prompt_dlg">Airplane mode enabled. Disable?</string>
     <string name="msg_wait_prodlg">Disabling airplane mode\u2026</string>
 
-    <!-- Forbidden network title -->
-    <string name="network_forbidden">(Forbidden)</string>
-
     <!-- Call Recording -->
     <string name="allow_call_recording_title">Allow call recording</string>
     <string name="allow_call_recording_summary">Show call recording button during a call</string>
@@ -207,4 +204,15 @@
     <!-- Waiver -->
     <string name="call_recording_waiver_title">Waiver</string>
     <string name="call_recording_waiver_body">Changing this setting may be against your state or government laws.\n\nIn selecting \'OK\' below, you acknowledge this warning and waive, indemnify and hold harmless CarbonROM and its contributors from all legal liabilities.</string>
+
+    <!-- Forbidden network title -->
+    <string name="network_forbidden">(Forbidden)</string>
+
+    <!-- Empty FDN -->
+    <string name="fdn_empty_number">FDN not updated: number cannot be empty.</string>
+
+    <!-- Proximity sensor enable -->
+    <string name="proximity_mode_title">Enable proximity sensor</string>
+    <string name="proximity_on_summary">When in call, use proximity sensor to turn off screen.</string>
+    <string name="proximity_off_summary">When in call, the screen will remain on.</string>
 </resources>
