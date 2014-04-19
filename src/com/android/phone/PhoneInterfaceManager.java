@@ -357,6 +357,13 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                 android.provider.Settings.Global.PREFERRED_NETWORK_MODE, network);
     }
 
+    public void toggleMobileNetwork(int networkStatus) {
+        mPhone.setPreferredNetworkType(networkStatus,
+                mMainThreadHandler.obtainMessage(CMD_TOGGLE_LTE)); //Omni CMD_TOGGLE_STATE
+        android.provider.Settings.Global.putInt(mApp.getContentResolver(),
+                android.provider.Settings.Global.PREFERRED_NETWORK_MODE, networkStatus);
+    }
+
     private boolean showCallScreenInternal(boolean specifyInitialDialpadState,
                                            boolean showDialpad) {
         if (!PhoneGlobals.sVoiceCapable) {
