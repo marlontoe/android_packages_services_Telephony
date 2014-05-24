@@ -72,6 +72,10 @@
     <string name="blacklist_notification_list_private">Private</string>
     <string name="unblock_number">Unblock</string>
 
+    <!-- Incall Glowpad transparency -->
+    <string name="glow_bg_trans">Transparent background</string>
+    <string name="glow_bg_trans_summary">Make glowpad background transparent during incoming call so entire contact picture is visible</string>
+
     <!-- Sprint MWI Quirk: Phantom message wait indicator workaround -->
     <string name="mwi_notification_title">Message wait indicator</string>
     <string name="mwi_notification_summary">Show message wait indicator voicemail notifications</string>
