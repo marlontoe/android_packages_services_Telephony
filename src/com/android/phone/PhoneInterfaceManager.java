@@ -42,7 +42,6 @@ import android.provider.Settings;
 import android.telephony.NeighboringCellInfo;
 import android.telephony.CellInfo;
 import android.telephony.ServiceState;
-import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -328,7 +327,6 @@ public class PhoneInterfaceManager extends ITelephony.Stub implements CallModele
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         mApp.startActivity(intent);
     }
-
 
     private int getPreferredNetworkMode() {
         int preferredNetworkMode = RILConstants.PREFERRED_NETWORK_MODE;
@@ -1262,4 +1260,15 @@ public class PhoneInterfaceManager extends ITelephony.Stub implements CallModele
             mBinder.unlinkToDeath(this, 0);
         }
     }
+
+    @Override
+    public void onModifyCall(Call call) {
+        // no-op
+    }
+
+    @Override
+    public void onActiveSubChanged(int activeSub) {
+        // no-op
+    }
+
 }
