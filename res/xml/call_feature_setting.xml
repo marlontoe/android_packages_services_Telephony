@@ -141,7 +141,7 @@
             android:key="incall_glowpad_transparency"
             android:title="@string/glow_bg_trans"
             android:persistent="false"
-            android:defaultValue="false"
+            android:defaultValue="true"
             android:summary="@string/glow_bg_trans_summary"/>
 
         <ListPreference

@@ -1977,7 +1977,7 @@ public class CallFeaturesSetting extends PreferenceActivity
 
         if (mIncallGlowpadTransparency != null) {
             int incallGlowpadTrans = Settings.System.getInt(getContentResolver(),
-                    Settings.System.INCALL_GLOWPAD_TRANSPARENCY, 0);
+                    Settings.System.INCALL_GLOWPAD_TRANSPARENCY, 1);
             mIncallGlowpadTransparency.setChecked(incallGlowpadTrans != 0);
         }
 
