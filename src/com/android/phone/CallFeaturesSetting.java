@@ -197,7 +197,6 @@ public class CallFeaturesSetting extends PreferenceActivity
     private static final String SIP_SETTINGS_CATEGORY_KEY =
             "sip_settings_category_key";
 
-    private static final String BUTTON_NON_INTRUSIVE_INCALL_KEY = "button_non_intrusive_incall";
     private static final String INCALL_GLOWPAD_TRANSPARENCY = "incall_glowpad_transparency";
     private static final String FLIP_ACTION_KEY = "flip_action";
 
@@ -308,7 +307,6 @@ public class CallFeaturesSetting extends PreferenceActivity
     private CheckBoxPreference mVoicemailNotificationVibrate;
     private SipSharedPreferences mSipSharedPreferences;
     private PreferenceScreen mButtonBlacklist;
-    private CheckBoxPreference mNonIntrusiveInCall;
     private ListPreference mFlipAction;
     private CheckBoxPreference mEnableForwardLookup;
     private CheckBoxPreference mEnablePeopleLookup;
@@ -581,10 +579,6 @@ public class CallFeaturesSetting extends PreferenceActivity
                 // This should let the preference use default behavior in the xml.
                 return false;
             }
-        } else if (preference == mNonIntrusiveInCall){
-            Settings.System.putInt(getContentResolver(), Settings.System.NON_INTRUSIVE_INCALL,
-                    mNonIntrusiveInCall.isChecked() ? 1 : 0);
-            return true;
         }
         return false;
     }
@@ -1741,10 +1735,6 @@ public class CallFeaturesSetting extends PreferenceActivity
                 throw new IllegalStateException("Unexpected phone type: " + phoneType);
             }
         }
-
-        mNonIntrusiveInCall = (CheckBoxPreference) findPreference(BUTTON_NON_INTRUSIVE_INCALL_KEY);
-        mNonIntrusiveInCall.setChecked(Settings.System.getInt(getContentResolver(),
-                Settings.System.NON_INTRUSIVE_INCALL, 1) == 0 ? false : true);
 
         mEnableForwardLookup = (CheckBoxPreference)
                 findPreference(SWITCH_ENABLE_FORWARD_LOOKUP);
