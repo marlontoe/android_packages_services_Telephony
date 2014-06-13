@@ -188,8 +188,6 @@ public class CallFeaturesSetting extends PreferenceActivity
     private static final String BUTTON_GSM_UMTS_OPTIONS = "button_gsm_more_expand_key";
     private static final String BUTTON_CDMA_OPTIONS = "button_cdma_more_expand_key";
 
-    private static final String BUTTON_CALL_UI_IN_BACKGROUND = "bg_incall_screen";
-
     private static final String VM_NUMBERS_SHARED_PREFERENCES_NAME = "vm_numbers";
 
     private static final String BUTTON_SIP_CALL_OPTIONS =
@@ -199,8 +197,10 @@ public class CallFeaturesSetting extends PreferenceActivity
     private static final String SIP_SETTINGS_CATEGORY_KEY =
             "sip_settings_category_key";
 
-    private static final String INCALL_GLOWPAD_TRANSPARENCY = "incall_glowpad_transparency";
+    private static final String BUTTON_CALL_UI_IN_BACKGROUND = "bg_incall_screen";
+    private static final String DIALKEY_PADDING = "dialkey_padding";
     private static final String FLIP_ACTION_KEY = "flip_action";
+    private static final String INCALL_GLOWPAD_TRANSPARENCY = "incall_glowpad_transparency";
 
     private static final String SWITCH_ENABLE_FORWARD_LOOKUP =
             "switch_enable_forward_lookup";
@@ -299,6 +299,7 @@ public class CallFeaturesSetting extends PreferenceActivity
     private CheckBoxPreference mButtonHAC;
     private CheckBoxPreference mButtonCallUiInBackground;
     private CheckBoxPreference mIncallGlowpadTransparency;
+    private ListPreference mDialkeyPadding;
     private ListPreference mButtonDTMF;
     private ListPreference mButtonTTY;
     private CheckBoxPreference mButtonNoiseSuppression;
@@ -620,6 +621,10 @@ public class CallFeaturesSetting extends PreferenceActivity
             Settings.System.putInt(mPhone.getContext().getContentResolver(),
                     Settings.System.CALL_UI_IN_BACKGROUND,
                     (Boolean) objValue ? 1 : 0);
+        } else if (preference == mDialkeyPadding) {
+            final int val = Integer.valueOf((String) objValue);
+            Settings.System.putInt(getContentResolver(),
+                Settings.System.DIALKEY_PADDING, val);
         } else if (preference == mMwiNotification) {
             int mwi_notification = mMwiNotification.isChecked() ? 1 : 0;
             Settings.System.putInt(mPhone.getContext().getContentResolver(),
@@ -1631,16 +1636,17 @@ public class CallFeaturesSetting extends PreferenceActivity
                 mMwiNotification = null;
             }
         }
+        mButtonBlacklist = (PreferenceScreen) findPreference(BUTTON_BLACKLIST);
         mButtonDTMF = (ListPreference) findPreference(BUTTON_DTMF_KEY);
         mButtonAutoRetry = (CheckBoxPreference) findPreference(BUTTON_RETRY_KEY);
         mButtonHAC = (CheckBoxPreference) findPreference(BUTTON_HAC_KEY);
         mButtonTTY = (ListPreference) findPreference(BUTTON_TTY_KEY);
         mButtonNoiseSuppression = (CheckBoxPreference) findPreference(BUTTON_NOISE_SUPPRESSION_KEY);
         mButtonCallUiInBackground = (CheckBoxPreference) findPreference(BUTTON_CALL_UI_IN_BACKGROUND);
+        mDialkeyPadding = (ListPreference) findPreference(DIALKEY_PADDING);
+        mFlipAction = (ListPreference) findPreference(FLIP_ACTION_KEY);
         mIncallGlowpadTransparency = (CheckBoxPreference) findPreference(INCALL_GLOWPAD_TRANSPARENCY);
         mVoicemailProviders = (ListPreference) findPreference(BUTTON_VOICEMAIL_PROVIDER_KEY);
-        mButtonBlacklist = (PreferenceScreen) findPreference(BUTTON_BLACKLIST);
-        mFlipAction = (ListPreference) findPreference(FLIP_ACTION_KEY);
 
         if (mVoicemailProviders != null) {
             mVoicemailProviders.setOnPreferenceChangeListener(this);
@@ -1717,6 +1723,10 @@ public class CallFeaturesSetting extends PreferenceActivity
 
         if (mIncallGlowpadTransparency != null) {
             mIncallGlowpadTransparency.setOnPreferenceChangeListener(this);
+        }
+
+        if (mDialkeyPadding != null) {
+            mDialkeyPadding.setOnPreferenceChangeListener(this);
         }
 
         if (mFlipAction != null) {
@@ -1996,6 +2006,12 @@ public class CallFeaturesSetting extends PreferenceActivity
             int incallGlowpadTrans = Settings.System.getInt(getContentResolver(),
                     Settings.System.INCALL_GLOWPAD_TRANSPARENCY, 1);
             mIncallGlowpadTransparency.setChecked(incallGlowpadTrans != 0);
+        }
+
+        if (mDialkeyPadding != null) {
+            int dialkeyPadding = Settings.System.getInt(getContentResolver(),
+                    Settings.System.DIALKEY_PADDING, 0);
+            mDialkeyPadding.setValue(String.valueOf(dialkeyPadding));
         }
 
         if (mFlipAction != null) {
