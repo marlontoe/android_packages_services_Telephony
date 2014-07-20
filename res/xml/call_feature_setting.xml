@@ -168,6 +168,14 @@
             android:entryValues="@array/flip_action_setting_values"
             android:persistent="false" />
 
+        <ListPreference
+            android:key="button_incoming_call_style"
+            android:title="@string/incoming_call_style_title"
+            android:summary="%s"
+            android:entries="@array/incoming_call_style_entries"
+            android:entryValues="@array/incoming_call_style_values"
+            android:persistent="false" />
+
         <PreferenceScreen
             android:key="button_respond_via_sms_key"
             android:title="@string/respond_via_sms_setting_title"
