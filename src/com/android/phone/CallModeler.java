@@ -725,6 +725,9 @@ public class CallModeler extends Handler {
             changed = true;
         }
 
+        // creation time should be fixed
+        call.setCreateTime(connection.getCreateTime());
+
         if (!isForConference) {
             // Number
             final String oldNumber = call.getNumber();
