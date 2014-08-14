@@ -320,4 +320,10 @@
             android:targetClass="com.android.phone.CdmaCallOptions"/>
     </PreferenceScreen>
 
+    <CheckBoxPreference
+        android:key="button_allow_call_recording"
+        android:title="@string/allow_call_recording_title"
+        android:summary="@string/allow_call_recording_summary"
+        android:defaultValue="false" />
+
 </PreferenceScreen>
