@@ -201,7 +201,6 @@ public class CallFeaturesSetting extends PreferenceActivity
     private static final String BUTTON_CALL_UI_AS_HEADS_UP = "bg_incall_screen_as_heads_up";
     private static final String DIALKEY_PADDING = "dialkey_padding";
     private static final String FLIP_ACTION_KEY = "flip_action";
-    private static final String INCALL_GLOWPAD_TRANSPARENCY = "incall_glowpad_transparency";
 
     private static final String SWITCH_ENABLE_FORWARD_LOOKUP =
             "switch_enable_forward_lookup";
@@ -300,7 +299,6 @@ public class CallFeaturesSetting extends PreferenceActivity
     private CheckBoxPreference mButtonHAC;
     private CheckBoxPreference mButtonCallUiInBackground;
     private CheckBoxPreference mButtonCallUiAsHeadsUp;
-    private CheckBoxPreference mIncallGlowpadTransparency;
     private ListPreference mDialkeyPadding;
     private ListPreference mButtonDTMF;
     private ListPreference mButtonTTY;
@@ -617,10 +615,6 @@ public class CallFeaturesSetting extends PreferenceActivity
                     Settings.System.DTMF_TONE_TYPE_WHEN_DIALING, index);
         } else if (preference == mButtonTTY) {
             handleTTYChange(preference, objValue);
-        } else if (preference == mIncallGlowpadTransparency) {
-            Settings.System.putInt(mPhone.getContext().getContentResolver(),
-                    Settings.System.INCALL_GLOWPAD_TRANSPARENCY,
-                    (Boolean) objValue ? 1 : 0);
         } else if (preference == mButtonCallUiInBackground) {
             Settings.System.putInt(mPhone.getContext().getContentResolver(),
                     Settings.System.CALL_UI_IN_BACKGROUND,
@@ -1654,7 +1648,6 @@ public class CallFeaturesSetting extends PreferenceActivity
         mButtonCallUiAsHeadsUp = (CheckBoxPreference) findPreference(BUTTON_CALL_UI_AS_HEADS_UP);
         mDialkeyPadding = (ListPreference) findPreference(DIALKEY_PADDING);
         mFlipAction = (ListPreference) findPreference(FLIP_ACTION_KEY);
-        mIncallGlowpadTransparency = (CheckBoxPreference) findPreference(INCALL_GLOWPAD_TRANSPARENCY);
         mVoicemailProviders = (ListPreference) findPreference(BUTTON_VOICEMAIL_PROVIDER_KEY);
 
         if (mVoicemailProviders != null) {
@@ -1728,10 +1721,6 @@ public class CallFeaturesSetting extends PreferenceActivity
                 prefSet.removePreference(mButtonNoiseSuppression);
                 mButtonNoiseSuppression = null;
             }
-        }
-
-        if (mIncallGlowpadTransparency != null) {
-            mIncallGlowpadTransparency.setOnPreferenceChangeListener(this);
         }
 
         if (mDialkeyPadding != null) {
@@ -2013,12 +2002,6 @@ public class CallFeaturesSetting extends PreferenceActivity
                     Phone.TTY_MODE_OFF);
             mButtonTTY.setValue(Integer.toString(settingsTtyMode));
             updatePreferredTtyModeSummary(settingsTtyMode);
-        }
-
-        if (mIncallGlowpadTransparency != null) {
-            int incallGlowpadTrans = Settings.System.getInt(getContentResolver(),
-                    Settings.System.INCALL_GLOWPAD_TRANSPARENCY, 1);
-            mIncallGlowpadTransparency.setChecked(incallGlowpadTrans != 0);
         }
 
         if (mDialkeyPadding != null) {
