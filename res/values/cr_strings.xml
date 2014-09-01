@@ -200,9 +200,6 @@
     <!-- Forbidden network title -->
     <string name="network_forbidden">(Forbidden)</string>
 
-    <!-- Empty FDN -->
-    <string name="fdn_empty_number">FDN not updated: number cannot be empty.</string>
-
     <!-- Call Recording -->
     <string name="allow_call_recording_title">Allow call recording</string>
     <string name="allow_call_recording_summary">Show call recording button during a call</string>
