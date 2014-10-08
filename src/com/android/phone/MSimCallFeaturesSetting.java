@@ -145,9 +145,6 @@ public class MSimCallFeaturesSetting extends CallFeaturesSetting {
 
         mSubManager = SubscriptionManager.getInstance();
 
-        // get buttons
-        PreferenceScreen prefSet = getPreferenceScreen();
-
         mButtonXDivert = (PreferenceScreen) findPreference(BUTTON_XDIVERT_KEY);
 
         PreferenceScreen selectSub = (PreferenceScreen) findPreference(BUTTON_SELECT_SUB_KEY);
@@ -168,10 +165,7 @@ public class MSimCallFeaturesSetting extends CallFeaturesSetting {
             mAllowCallRecording.setChecked(Settings.System.getBoolean(getContentResolver(),
                     Settings.System.ALLOW_CALL_RECORDING, false));
         }
-
-        removeOptionalPrefs(prefSet);
     }
-
 
     @Override
     protected void onCreateVoicemailPrefs(Bundle savedInstanceState) {
@@ -296,8 +290,9 @@ public class MSimCallFeaturesSetting extends CallFeaturesSetting {
     @Override
     protected void removeOptionalPrefs(PreferenceScreen preferenceScreen) {
         super.removeOptionalPrefs(preferenceScreen);
-        if (!getResources().getBoolean(R.bool.config_show_xdivert) && mButtonXDivert != null) {
-            preferenceScreen.removePreference(mButtonXDivert);
+        if (!getResources().getBoolean(R.bool.config_show_xdivert)) {
+            Preference xdivert = findPreference(BUTTON_XDIVERT_KEY);
+            preferenceScreen.removePreference(xdivert);
         }
     }
 
